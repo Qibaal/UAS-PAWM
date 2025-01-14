@@ -1,51 +1,79 @@
 {
-  "expo": {
-    "name": "uas-pawm",
-    "slug": "uas-pawm",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
-    "scheme": "myapp",
-    "userInterfaceStyle": "automatic",
-    "newArchEnabled": true,
-    "ios": {
-      "supportsTablet": true
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      },
-      "package": "com.iqbal28.uaspawm"
-    },
-    "web": {
-      "bundler": "metro",
-      "output": "static",
-      "favicon": "./assets/images/favicon.png"
-    },
-    "plugins": [
-      "expo-router",
-      [
-        "expo-splash-screen",
-        {
-          "image": "./assets/images/splash-icon.png",
-          "imageWidth": 200,
-          "resizeMode": "contain",
-          "backgroundColor": "#ffffff"
+    "expo": {
+        "name": "Stoichify",
+        "slug": "uas-pawm",
+        "version": "1.0.0",
+        "orientation": "portrait",
+        "icon": "./assets/images/icon.png",
+        "scheme": "myapp",
+        "userInterfaceStyle": "automatic",
+        "newArchEnabled": true,
+        "ios": {
+            "supportsTablet": true
+        },
+        "android": {
+            "adaptiveIcon": {
+                "foregroundImage": "./assets/images/adaptive-icon.png",
+                "backgroundColor": "#ffffff"
+            },
+            "package": "com.iqbal28.uaspawm",
+            "googleServicesFile": "./google-services.json",
+            "compileSdkVersion": 34,
+            "targetSdkVersion": 34,
+            "buildToolsVersion": "34.0.0",
+            "minSdkVersion": 21,
+            "enableProguardInReleaseBuilds": true,
+            "extraProguardRules": "-keep class com.myapp.** { *; }",
+            "kotlinVersion": "1.5.31"
+        },
+        "web": {
+            "bundler": "metro",
+            "output": "static",
+            "favicon": "./assets/images/favicon.png"
+        },
+        "plugins": [
+            "expo-router",
+            [
+                "expo-build-properties",
+                {
+                  "android": {
+                    "compileSdkVersion": 34,
+                    "targetSdkVersion": 34,
+                    "buildToolsVersion": "34.0.0"
+                  }
+                }
+            ],
+            "@react-native-firebase/app",
+            "@react-native-firebase/auth",
+            "@react-native-firebase/firestore",
+            "@react-native-google-signin/google-signin",
+            [
+                "expo-secure-store",
+                {
+                    "configureAndroidBackup": true
+                }
+            ],
+            [
+                "expo-splash-screen",
+                {
+                    "image": "./assets/images/icon.png",
+                    "imageWidth": 200,
+                    "resizeMode": "contain",
+                    "backgroundColor": "#ffffff"
+                }
+            ],
+            "expo-video"
+        ],
+        "experiments": {
+            "typedRoutes": true
+        },
+        "extra": {
+            "router": {
+                "origin": false
+            },
+            "eas": {
+                "projectId": "e2cefb8a-95a9-4105-9ead-a9ec788a086a"
+            }
         }
-      ],
-      "expo-video"
-    ],
-    "experiments": {
-      "typedRoutes": true
-    },
-    "extra": {
-      "router": {
-        "origin": false
-      },
-      "eas": {
-        "projectId": "e2cefb8a-95a9-4105-9ead-a9ec788a086a"
-      }
     }
-  }
 }

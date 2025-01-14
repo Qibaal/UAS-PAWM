@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1036513487255",
+    "project_id": "stoichify-1751f",
+    "storage_bucket": "stoichify-1751f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1036513487255:android:a71607a4f76ebbb606bcd2",
+        "android_client_info": {
+          "package_name": "com.iqbal28.uaspawm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1036513487255-fa0n51uvrtekk5j5lg41tqk7tvfsh8ki.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9qO6adJ6uVfJV4YiuwFmlnk5ZHhbaYaI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1036513487255-fa0n51uvrtekk5j5lg41tqk7tvfsh8ki.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

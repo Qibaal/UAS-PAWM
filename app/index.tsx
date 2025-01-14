@@ -1,22 +1,21 @@
 import { useEffect, useRef } from 'react';
 import { StyleSheet, View, Text, Dimensions } from 'react-native';
-import { Link } from 'expo-router';
 import { Video } from 'expo-av';
-import { useNavigation } from '@react-navigation/native';
+import { useRouter } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient';
 
 
-export default function HomeScreen() {
+export default function SplashScreen() {
   const videoRef = useRef(null);
-  const navigation = useNavigation();
+  const router = useRouter();
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigation.navigate('startscreen');
+      router.push('/startscreen')
     }, 7500);
 
     return () => clearTimeout(timer);
-  }, [navigation]);
+  }, []);
 
   return (
     <LinearGradient
@@ -27,7 +26,7 @@ export default function HomeScreen() {
     >
       <Video
         ref={videoRef}
-        source={require('../../assets/videos/stoichichoice.mp4')}
+        source={require('../assets/videos/stoichichoice.mp4')}
         style={styles.video}
         shouldPlay
         resizeMode="cover"
@@ -38,9 +37,9 @@ export default function HomeScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,  // Make the gradient fill the entire screen
-    justifyContent: 'center',  // Vertically center content
-    alignItems: 'center',      // Horizontally center content
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   video: {
     position: 'absolute',
