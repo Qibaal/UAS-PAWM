@@ -1,86 +1,89 @@
-import { useRouter } from "expo-router";
-import { View, Text, StyleSheet } from "react-native";
-import Button from "../components/ui/Button";
-import { Link } from "expo-router";
+import { router } from "expo-router";
+import {
+    StyleSheet,
+    View,
+    Text,
+    TouchableOpacity,
+    Dimensions,
+    Image,
+    ImageBackground,
+} from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
+
+import BeakerLogo from "../assets/images/startscreenlogo.png";
+import Bg from "@/assets/images/startscreenbg.jpg";
 
 export default function StartScreen() {
-    const router = useRouter();
-
     return (
-        <View style={styles.container}>
-            <View style={styles.background}>
-                <Text style={styles.logo}>Stoichify</Text>
-
-                <Text style={styles.header}>Welcome to Stoichify</Text>
-
-                <Text style={styles.paragraph}>
-                    Explore the fundamentals of stoichiometry in a fun,
-                    interactive virtual lab..
-                </Text>
-
-                <View style={styles.buttonContainer}>
-                    <Button 
-                      mode="contained" 
-                      onPress={() => router.push('/sign-in')}
-                      style={styles.button}>
-                        Log in
-                    </Button>
-
-                    <View style={styles.space}></View>
-
-                    <Button 
-                      mode="outlined" 
-                      onPress={() => router.push('/home')}
-                      style={styles.button}>
-                        Create an account
-                    </Button>
+        <ImageBackground source={Bg} style={styles.container}>
+            <View style={styles.content}>
+                <View style={styles.logoContainer}>
+                    <Image source={BeakerLogo} style={styles.logo} />
+                    <Text style={styles.appName}>Stoichify</Text>
                 </View>
+
+                <TouchableOpacity
+                    style={styles.button}
+                    onPress={() => router.replace("/auth")}
+                >
+                    <Text style={styles.buttonText}>Get Started</Text>
+                </TouchableOpacity>
+
+                <Text
+                    onPress={() => router.replace("/auth")}
+                    style={styles.subText}
+                >
+                    I already have an account
+                </Text>
             </View>
-        </View>
+        </ImageBackground>
     );
 }
+
+const { width, height } = Dimensions.get("window");
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        padding: 20,
     },
-    background: {
+    content: {
         flex: 1,
-        justifyContent: "center",
         alignItems: "center",
-        width: "100%",
-        height: "100%",
+        justifyContent: "center",
+        padding: width * 0.05,
+    },
+    logoContainer: {
+        alignItems: "center",
+        marginBottom: height * 0.08,
     },
     logo: {
-        fontSize: 40,
+        width: 256,
+        height: 256,
+        resizeMode: "contain",
+    },
+    appName: {
+        fontSize: width * 0.08,
+        color: "#fff",
         fontWeight: "bold",
-        color: "#BDE0FE",
-        marginBottom: 20,
-    },
-    header: {
-        fontSize: 28,
-        fontWeight: "600",
-        textAlign: "center",
-        marginBottom: 20,
-        color: "#333",
-    },
-    paragraph: {
-        fontSize: 16,
-        textAlign: "center",
-        marginBottom: 30,
-        color: "#666",
-    },
-    buttonContainer: {
-        width: "100%",
-        paddingHorizontal: 40,
+        marginTop: height * 0.02,
     },
     button: {
-        marginVertical: 10, // Vertical spacing between buttons
+        backgroundColor: "#fff",
+        paddingVertical: height * 0.02,
+        paddingHorizontal: width * 0.1,
+        borderRadius: 50,
+        width: width * 0.8,
+        alignItems: "center",
+        marginTop: height * 0.04,
     },
-    space: {
-        marginVertical: 10, // Spacer between the buttons
+    buttonText: {
+        color: "#6366f1",
+        fontSize: width * 0.07,
+        fontWeight: "600",
+    },
+    subText: {
+        color: "#fff",
+        marginTop: height * 0.02,
+        fontSize: width * 0.035,
     },
 });

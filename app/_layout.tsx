@@ -4,7 +4,7 @@ import * as ExpoSplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import "react-native-reanimated";
 
-import { useRouter, Stack ,Slot } from "expo-router";
+import { Slot } from "expo-router";
 import { SessionProvider } from "@/providers/ctx";
 
 ExpoSplashScreen.preventAutoHideAsync();

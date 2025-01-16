@@ -1,4 +1,3 @@
-import { useRouter } from "expo-router";
 import {
     SafeAreaView,
     StyleSheet,
@@ -8,13 +7,9 @@ import {
     ImageBackground,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-
-import { useSession } from "@/providers/ctx";
+import { router } from "expo-router";
 
 const HomePage = () => {
-    const router = useRouter();
-    const { signOut } = useSession();
-
     return (
         <SafeAreaView style={styles.container}>
             <ImageBackground style={styles.backgroundImage}>
@@ -34,25 +29,18 @@ const HomePage = () => {
                         {/* Navigate to VirtualLab */}
                         <TouchableOpacity
                             style={styles.button}
-                            onPress={() => router.push("/")}
+                            onPress={() => router.replace("../(app)/virtual-lab")}
                         >
                             <Text style={styles.buttonText}>Virtual Lab</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity
                             style={styles.button}
-                            onPress={() => console.log("Test Page pressed")}
+                            onPress={() => router.replace("../(app)/virtual-lab-test")}
                         >
                             <Text style={styles.buttonText}>
                                 Test Your Knowledge
                             </Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity
-                            style={styles.button}
-                            onPress={() => signOut()}
-                        >
-                            <Text style={styles.buttonText}>Logout</Text>
                         </TouchableOpacity>
                     </View>
                 </LinearGradient>

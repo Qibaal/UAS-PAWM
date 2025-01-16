@@ -12,19 +12,18 @@
             "supportsTablet": true
         },
         "android": {
-            "adaptiveIcon": {
-                "foregroundImage": "./assets/images/adaptive-icon.png",
-                "backgroundColor": "#ffffff"
-            },
             "package": "com.iqbal28.uaspawm",
-            "googleServicesFile": "./google-services.json",
             "compileSdkVersion": 34,
             "targetSdkVersion": 34,
             "buildToolsVersion": "34.0.0",
             "minSdkVersion": 21,
             "enableProguardInReleaseBuilds": true,
             "extraProguardRules": "-keep class com.myapp.** { *; }",
-            "kotlinVersion": "1.5.31"
+            "kotlinVersion": "1.5.31",
+            "adaptiveIcon": {
+                "foregroundImage": "./assets/images/adaptive-icon.png",
+                "backgroundColor": "#ffffff"
+            }
         },
         "web": {
             "bundler": "metro",
@@ -33,6 +32,7 @@
         },
         "plugins": [
             "expo-router",
+            "expo-secure-store",
             [
                 "expo-build-properties",
                 {
@@ -41,16 +41,6 @@
                     "targetSdkVersion": 34,
                     "buildToolsVersion": "34.0.0"
                   }
-                }
-            ],
-            "@react-native-firebase/app",
-            "@react-native-firebase/auth",
-            "@react-native-firebase/firestore",
-            "@react-native-google-signin/google-signin",
-            [
-                "expo-secure-store",
-                {
-                    "configureAndroidBackup": true
                 }
             ],
             [

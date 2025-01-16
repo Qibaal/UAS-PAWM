@@ -1,19 +1,18 @@
 import { Text } from "react-native";
-import { Redirect, Stack } from "expo-router";
+import { Redirect } from "expo-router";
+import { router } from "expo-router";
 
 import { useSession } from "@/providers/ctx";
 import AuthStack from "./AuthStack";
 
-export default function AppLayout() {
-    const { session, isLoading } = useSession();
-
-    if (isLoading) {
-        return <Text>Loading...</Text>;
-    }
+function AppLayout() {
+    const { session } = useSession();
 
     if (!session) {
-        return <Redirect href="/sign-in" />;
+        router.replace("/auth")
     }
 
     return <AuthStack />;
 }
+
+export default AppLayout;
