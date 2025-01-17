@@ -70,33 +70,35 @@ export default function SettingsScreen() {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Settings</Text>
-
-            <View style={styles.fieldContainer}>
-                <Text style={styles.label}>Email:</Text>
-                <Text style={styles.value}>{userData.email}</Text>
+            <View style={styles.content}>
+                <Text style={styles.title}>Settings</Text>
+    
+                <View style={styles.fieldContainer}>
+                    <Text style={styles.label}>Email:</Text>
+                    <Text style={styles.value}>{userData.email}</Text>
+                </View>
+    
+                <View style={styles.fieldContainer}>
+                    <Text style={styles.label}>Full Name:</Text>
+                    <TextInput
+                        style={styles.input}
+                        value={userData.fullName}
+                        onChangeText={handleFullNameChange}
+                        placeholder="Enter your full name"
+                    />
+                </View>
+    
+                <TouchableOpacity
+                    style={styles.saveButton}
+                    onPress={handleSave}
+                    disabled={isLoading}
+                >
+                    <Text style={styles.saveButtonText}>
+                        {isLoading ? "Saving..." : "Save"}
+                    </Text>
+                </TouchableOpacity>
             </View>
-
-            <View style={styles.fieldContainer}>
-                <Text style={styles.label}>Full Name:</Text>
-                <TextInput
-                    style={styles.input}
-                    value={userData.fullName}
-                    onChangeText={handleFullNameChange}
-                    placeholder="Enter your full name"
-                />
-            </View>
-
-            <TouchableOpacity
-                style={styles.saveButton}
-                onPress={handleSave}
-                disabled={isLoading}
-            >
-                <Text style={styles.saveButtonText}>
-                    {isLoading ? "Saving..." : "Save"}
-                </Text>
-            </TouchableOpacity>
-
+    
             <TouchableOpacity
                 style={styles.logoutButton}
                 onPress={handleSignOut}
@@ -105,13 +107,18 @@ export default function SettingsScreen() {
             </TouchableOpacity>
         </View>
     );
+    
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 20,
-        backgroundColor: "#fff",
+        backgroundColor: "#fefae0",
+        justifyContent: "space-between",
+    },
+    content: {
+        flexGrow: 1,
     },
     title: {
         fontSize: 24,
@@ -155,6 +162,7 @@ const styles = StyleSheet.create({
         padding: 15,
         borderRadius: 5,
         alignItems: "center",
+        alignSelf: "stretch", 
     },
     logoutButtonText: {
         color: "#fff",

@@ -23,7 +23,7 @@ export interface AuthResponse {
     error?: string;
 }
 
-interface UserData {
+export interface UserData {
     fullName: string;
     email: string;
     uid: string;

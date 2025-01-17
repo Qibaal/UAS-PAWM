@@ -8,12 +8,8 @@ import {
     ScrollView,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import {
-  reactions,
-  reactionConstants,
-  acids,
-  bases,
-} from "./chemistryData";
+import { reactions, reactionConstants, acids, bases } from "./chemistryData";
+import { updateUserFields } from "@/utils/auth";
 
 
 const VolumeControl = ({
@@ -63,7 +59,7 @@ const ChemicalBeaker = ({
     </View>
 );
 
-const LabArea = () => {
+const LabArea: React.FC<{ currentState: any }> = ({ currentState }) => {
     const [selectedAcid, setSelectedAcid] = useState<string | null>(null);
     const [selectedBase, setSelectedBase] = useState<string | null>(null);
     const [acidVolume, setAcidVolume] = useState<number>(1);
@@ -76,6 +72,15 @@ const LabArea = () => {
         vol1: number;
         vol2: number;
     }>({ vol1: 0, vol2: 0 });
+
+    useEffect(() => {
+        if (currentState) {
+            setSelectedAcid(currentState.acid);
+            setSelectedBase(currentState.base);
+            setAcidVolume(currentState.acidMol);
+            setBaseVolume(currentState.baseMol);   
+        }
+    }, [currentState])
 
     const calculateProducts = () => {
         if (selectedAcid && selectedBase) {
@@ -119,6 +124,30 @@ const LabArea = () => {
         }
     };
 
+    const handleSaveState = async () => {
+        if (selectedAcid && selectedBase && acidVolume && baseVolume) {
+            try {
+                const result = await updateUserFields({
+                    state: {
+                        acid: selectedAcid,
+                        base: selectedBase,
+                        acidMol: acidVolume,
+                        baseMol: baseVolume,
+                    },
+                });
+
+                if (result.success) {
+                    console.log("State save success!");
+                } else {
+                    console.error("Failed to update user score:", result.error);
+                }
+            } catch (error) {
+                console.error("Error while updating user score:", error);
+            }
+        }
+        return;
+    };
+
     useEffect(() => {
         if (selectedAcid && selectedBase) {
             checkReaction();
@@ -144,10 +173,12 @@ const LabArea = () => {
                             </Text>
                         </View>
                     )}
-                    <VolumeControl
-                        value={acidVolume}
-                        onChange={setAcidVolume}
-                    />
+                    {products.product1 && (
+                        <VolumeControl
+                            value={acidVolume}
+                            onChange={setAcidVolume}
+                        />
+                    )}
                 </View>
 
                 <Text style={styles.operatorText}>+</Text>
@@ -165,19 +196,21 @@ const LabArea = () => {
                             </Text>
                         </View>
                     )}
-                    <VolumeControl
-                        value={baseVolume}
-                        onChange={setBaseVolume}
-                    />
+                    {products.product1 && (
+                        <VolumeControl
+                            value={baseVolume}
+                            onChange={setBaseVolume}
+                        />
+                    )}
                 </View>
 
-                <Text style={styles.operatorText}>→</Text>
+                {products.product1 && (
+                    <Text style={styles.operatorText}>→</Text>
+                )}
 
                 {products.product1 && (
                     <View style={styles.productsContainer}>
                         <View style={styles.chemicalContainer}>
-                            {" "}
-                            {/* This container style was missing */}
                             <ChemicalBeaker
                                 chemical={products.product1}
                                 color="#E9D8FD"
@@ -190,8 +223,6 @@ const LabArea = () => {
                             <>
                                 <Text style={styles.operatorText}>+</Text>
                                 <View style={styles.chemicalContainer}>
-                                    {" "}
-                                    {/* This container style was missing */}
                                     <ChemicalBeaker
                                         chemical={products.product2 || ""}
                                         color="#B2F5EA"
@@ -243,39 +274,52 @@ const LabArea = () => {
                     </View>
                 </View>
             </View>
+
+            <View style={styles.buttonContainer}>
+                <TouchableOpacity
+                    onPress={handleSaveState}
+                    style={[styles.button, styles.blueButton]}
+                >
+                    <Text style={styles.buttonText}>Save State</Text>
+                </TouchableOpacity>
+            </View>
         </ScrollView>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        backgroundColor: "#FFFFFF",
+        backgroundColor: "#fefae0",
         padding: 16,
+        borderRadius: 8,
+        marginBottom: 20,
     },
     title: {
         fontSize: 24,
         fontWeight: "bold",
-        marginBottom: 16,
+        marginBottom: 48,
         color: "#2D3748",
+        flexShrink: 1, // Ensure title doesn't grow beyond its space
     },
     reactionArea: {
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: "center",
-        marginBottom: 24,
+        justifyContent: "space-evenly",
+        marginBottom: 30,
+        paddingHorizontal: 0,
+        width: "100%",
     },
     chemicalContainer: {
-        width: 100, // Fixed width for all items
-        height: 140, // Fixed height for alignment
+        width: 60,
+        height: 80,
         alignItems: "center",
         justifyContent: "center",
-        marginHorizontal: 8,
+        marginHorizontal: 0,
+        maxWidth: 60,
     },
-
     chemicalBeaker: {
-        width: "100%", // Match the parent container width
-        height: "100%", // Match the parent container height
+        width: "100%",
+        height: "100%",
         alignItems: "center",
         justifyContent: "center",
     },
@@ -292,17 +336,17 @@ const styles = StyleSheet.create({
         position: "absolute",
         bottom: 20,
     },
+
     beakerOverlay: {
         ...StyleSheet.absoluteFillObject,
         backgroundColor: "rgba(255, 255, 255, 0.2)",
         borderRadius: 8,
     },
     chemicalName: {
-        marginTop: 8,
-        fontSize: 14, // Adjust font size for better readability
-        fontWeight: "500",
+        fontSize: 13,
+        fontWeight: "600",
         color: "#4A5568",
-        textAlign: "center", // Align text properly
+        textAlign: "center",
     },
     emptyBeaker: {
         width: 60,
@@ -336,7 +380,7 @@ const styles = StyleSheet.create({
     operatorText: {
         fontSize: 24,
         fontWeight: "bold",
-        marginHorizontal: 16,
+        marginHorizontal: 4,
         color: "#4A5568",
     },
     productsContainer: {
@@ -355,18 +399,42 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         marginBottom: 8,
         color: "#2D3748",
+        textAlign: "center",
     },
     chemicalGrid: {
         flexDirection: "row",
         flexWrap: "wrap",
         justifyContent: "space-evenly",
-        gap: 16, // Uniform spacing between items
+        gap: 16,
         marginVertical: 16,
     },
     chemicalButton: {
         width: "30%",
         marginBottom: 16,
         alignItems: "center",
+    },
+    buttonContainer: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        padding: 16,
+    },
+    button: {
+        flex: 1,
+        paddingVertical: 12,
+        borderRadius: 8,
+        alignItems: "center",
+        marginHorizontal: 8,
+    },
+    blueButton: {
+        backgroundColor: "#007BFF",
+    },
+    pinkButton: {
+        backgroundColor: "#FF69B4",
+    },
+    buttonText: {
+        color: "#FFFFFF",
+        fontSize: 16,
+        fontWeight: "bold",
     },
 });
 

@@ -1,11 +1,20 @@
 import { Stack } from "expo-router";
 
-
 const AuthStack = () => {
     return (
         <Stack>
-            <Stack.Screen name="virtual-lab" />
-            <Stack.Screen name="virtual-lab-test" />
+            <Stack.Screen
+                name="virtual-lab"
+                options={{
+                    headerShown: false,
+                }}
+            />
+            <Stack.Screen
+                name="virtual-lab-test"
+                options={{
+                    headerShown: false,
+                }}
+            />
         </Stack>
     );
 };

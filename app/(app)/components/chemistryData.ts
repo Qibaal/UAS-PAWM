@@ -1,4 +1,4 @@
-export const reactions : { [key: string]: string } = {
+export const reactions: { [key: string]: string } = {
     "HCl+NaOH": "NaCl + H₂O",
     "HCl+KOH": "KCl + H₂O",
     "HCl+Ca(OH)₂": "CaCl₂ + H₂O",
@@ -24,9 +24,40 @@ export const reactions : { [key: string]: string } = {
     "H₃PO₄+Ca(OH)₂": "Ca₃(PO₄)₂ + H₂O",
     "H₃PO₄+NH₃": "(NH₄)₃PO₄ + -",
     "H₃PO₄+Mg(OH)₂": "Mg₃(PO₄)₂ + H₂O",
-  };
-  
-  export const reactionConstants: { [key: string]: [number, number, number, number] } = {
+};
+
+export const questions = [
+    "NaCl + H₂O",
+    "NH₄Cl + -",
+    "KCl + H₂O",
+    "CaCl₂ + H₂O",
+    "NH₄Cl + -",
+    "MgCl₂ + H₂O",
+    "Na₂SO₄ + H₂O",
+    "K₂SO₄ + H₂O",
+    "CaSO₄ + H₂O",
+    "(NH₄)₂SO₄ + -",
+    "MgSO₄ + H₂O",
+    "NaNO₃ + H₂O",
+    "KNO₃ + H₂O",
+    "Ca(NO₃)₂ + H₂O",
+    "NH₄NO₃ + -",
+    "Mg(NO₃)₂ + H₂O",
+    "CH₃COONa + H₂O",
+    "CH₃COOK + H₂O",
+    "(CH₃COO)₂Ca + H₂O",
+    "CH₃COONH₄ + -",
+    "(CH₃COO)₂Mg + H₂O",
+    "Na₃PO₄ + H₂O",
+    "K₃PO₄ + H₂O",
+    "Ca₃(PO₄)₂ + H₂O",
+    "(NH₄)₃PO₄ + -",
+    "Mg₃(PO₄)₂ + H₂O",
+];
+
+export const reactionConstants: {
+    [key: string]: [number, number, number, number];
+} = {
     "HCl+NaOH": [1, 1, 1, 1],
     "HCl+KOH": [1, 1, 1, 1],
     "HCl+Ca(OH)₂": [2, 1, 1, 2],
@@ -52,9 +83,7 @@ export const reactions : { [key: string]: string } = {
     "H₃PO₄+Ca(OH)₂": [2, 3, 1, 6],
     "H₃PO₄+NH₃": [1, 3, 1, 0],
     "H₃PO₄+Mg(OH)₂": [2, 3, 1, 6],
-  };
-  
-  export const acids = ["HCl", "H₂SO₄", "HNO₃", "CH₃COOH", "H₃PO₄"];
-  export const bases = ["NaOH", "KOH", "Ca(OH)₂", "NH₃", "Mg(OH)₂"];
-  
-  
+};
+
+export const acids = ["HCl", "H₂SO₄", "HNO₃", "CH₃COOH", "H₃PO₄"];
+export const bases = ["NaOH", "KOH", "Ca(OH)₂", "NH₃", "Mg(OH)₂"];

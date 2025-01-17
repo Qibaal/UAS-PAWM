@@ -97,7 +97,7 @@ export default function AuthScreen() {
                         <View style={styles.inputContainer}>
                             <TextInput
                                 style={styles.input}
-                                placeholder="Username"
+                                placeholder="Full Name"
                                 value={fullName}
                                 onChangeText={setFullName}
                                 autoCapitalize="none"
