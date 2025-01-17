@@ -1,50 +1,81 @@
-# Welcome to your Expo app 👋
+# Stoichify
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Stoichify adalah proyek React Native yang dibangun dengan Expo Go yang bertujuan untuk membuat pembelajaran stoikiometri menjadi menyenangkan dan interaktif. Dengan mengintegrasikan teknik gamifikasi, Stoichify membantu pengguna memahami dan mempraktikkan konsep stoikiometri dengan cara yang menarik, mengubah subjek yang menantang menjadi pengalaman yang menyenangkan.
 
-## Get started
+---
 
-1. Install dependencies
+## Features
 
+- **Pelajaran Stoikiometri Interaktif**: Tutorial langkah demi langkah untuk mempelajari dasar-dasar stoikiometri.
+- **Pembelajaran dengan Gamifikasi**: Poin, pencapaian, dan papan peringkat untuk memotivasi pengguna.
+- **Masalah Latihan**: Berbagai jenis masalah stoikiometri dengan umpan balik instan.
+- **Dukungan Cross-Platform**: Berjalan di Android dan Web melalui Expo Go.
+
+---
+## APK Installation
+Download File .apk di folder apk
+
+---
+
+
+## Run Locally
+
+Follow these steps to set up Stoichify:
+
+1. Clone the repository:
+   ```bash
+   https://github.com/Qibaal/UAS-PAWM.git
+   ```
+
+2. Install dependencies:
    ```bash
    npm install
    ```
-
-2. Start the app
-
+   or
    ```bash
-    npx expo start
+   yarn install
    ```
 
-In the output, you'll find options to open the app in a
+3. Start the development server:
+   ```bash
+   npx expo start
+   ```
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+4. Open the Expo Go app on your Android device, and scan the QR code displayed in the terminal or browser.
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+---
 
-## Get a fresh project
+## Requirements
 
-When you're ready, run:
+To run Stoichify, ensure you have the following installed:
 
-```bash
-npm run reset-project
+- Node.js (>=16.x.x)
+- npm or yarn
+- Expo CLI
+- Expo Go app (for Android or iOS)
+
+---
+
+## Usage
+
+1. Open the Stoichify app on your device using Expo Go.
+2. Navigate through the interactive lessons or choose a gamified challenge.
+3. Earn points and track your progress as you complete stoichiometry problems.
+
+---
+
+## Project Structure
+
+```
+Stoichify/
+├── app/   
+├── assets/             
+├── components/         
+├── config/                    
+├── utils/             
+├── providers             
+├── app.json   
+└── etc  
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+---
