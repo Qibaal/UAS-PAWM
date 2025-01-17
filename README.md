@@ -17,6 +17,11 @@ Download File .apk di folder apk
 
 ---
 
+## Web Access
+[uas-pawm.vercel.app](https://uas-pawm.vercel.app/)
+
+---
+
 
 ## Run Locally
 
